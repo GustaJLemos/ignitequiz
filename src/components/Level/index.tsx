@@ -12,6 +12,8 @@ import Animated,
 } from 'react-native-reanimated';
 import { useEffect } from 'react';
 
+const PressableAnimated = Animated.createAnimatedComponent(Pressable);
+
 const TYPE_COLORS = {
   EASY: THEME.COLORS.BRAND_LIGHT,
   HARD: THEME.COLORS.DANGER_LIGHT,
@@ -72,22 +74,25 @@ export function Level({ title, type = 'EASY', isChecked = false, ...rest }: Prop
   return (
     // pressable por padrão n vem como um componente animado, ou seja, ele n está na lista de Animated.
     // mas podemos criar um componente animado customizado pra gente
-    <Pressable onPressIn={onPressIn} onPressOut={onPressOut} {...rest}>
-      <Animated.View style={
+    <PressableAnimated
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}
+      style={
         [
           styles.container,
           { borderColor: COLOR },
           animatedContainerStyle
         ]
-      }>
-        <Animated.Text style={
-          [
-            styles.title,
-            animatedTextStyle
-          ]}>
-          {title}
-        </Animated.Text>
-      </Animated.View>
-    </Pressable>
+      }
+      {...rest}
+    >
+      <Animated.Text style={
+        [
+          styles.title,
+          animatedTextStyle
+        ]}>
+        {title}
+      </Animated.Text>
+    </PressableAnimated>
   );
 }
