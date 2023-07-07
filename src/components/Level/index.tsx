@@ -27,6 +27,8 @@ type Props = PressableProps & {
 }
 
 export function Level({ title, type = 'EASY', isChecked = false, ...rest }: Props) {
+  const COLOR = TYPE_COLORS[type];
+
   const scale = useSharedValue(1);
   const checked = useSharedValue(1);
 
@@ -48,12 +50,10 @@ export function Level({ title, type = 'EASY', isChecked = false, ...rest }: Prop
       color: interpolateColor(
         checked.value,
         [0, 1],
-        [THEME.COLORS.GREY_100, COLOR]
+        [COLOR, THEME.COLORS.GREY_100]
       )
     }
   })
-
-  const COLOR = TYPE_COLORS[type];
 
   function onPressIn() {
     // podemos alterar n osso valor usando uma transição (withTiming, withSpring...)
