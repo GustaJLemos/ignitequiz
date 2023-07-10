@@ -40,7 +40,7 @@ export function Question({ question, alternativeSelected, setAlternativeSelected
       opacity: 0.3
     },
     100: {
-      opacity: 0,
+      opacity: 1,
       transform: [
         // jogando nosso componente pra fora da tela
         { translateX: 0 },
